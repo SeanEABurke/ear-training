@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 80vw;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  button {
+    background-color: #0e7b47;
+    color: #fff;
+    width: 140px;
+    padding: 10px 20px;
+    margin: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
