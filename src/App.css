@@ -5,9 +5,10 @@
   }
 
   body {
-    background-color: #f0f0f0;
+    background-color: #222020;
     font-family: Arial, sans-serif;
     text-align: center;
+    color: #fff;
   }
 
   .container {
@@ -16,11 +17,11 @@
     padding: 20px;
   }
 
-  button {
+  .chord-btn {
     background-color: #0e7b47;
     color: #fff;
     width: 140px;
-    padding: 10px 20px;
+    padding: 10px 10px;
     margin: 15px;
     border: none;
     border-radius: 10px;
