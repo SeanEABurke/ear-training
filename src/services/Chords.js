@@ -37,6 +37,26 @@ export const chordSymbols = {
   major7_s9_s11: "Major 7 #9 #11",
 };
 export const chordNames = Object.keys(chordDictionary);
+
+export const chordCats = {
+  triads: ["major", "minor", "diminished", "augmented", "dominant"],
+  major_four_note: ["major6", "major7", "major2", "major7_s5"],
+  major_extensions: [
+    "major6_9",
+    "major9",
+    "major9_s11",
+    "major9_s5",
+    "major13",
+    "major7_s9_s11",
+  ],
+};
+
+export const chordCatsStrings = {
+  triads: "Triads",
+  major_four_note: "Major 4-note",
+  major_extensions: "Major Extensions",
+};
+
 export function makeChord(intervals, root = null) {
   Tone.start().then(() => {
     // The audio context is now started, you can play sounds here

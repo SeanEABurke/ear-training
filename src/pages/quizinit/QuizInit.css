@@ -3,6 +3,23 @@
     flex-direction: row;
 } */
 
+span {
+  color: white;
+  font-size: large;
+}
+
+.columns {
+  margin-top: 5vh;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: space-evenly;
+}
+
+.quiz-header {
+  padding: 0;
+  border-color: whitesmoke;
+}
 
 /* Hide the default checkbox */
 .container input {
