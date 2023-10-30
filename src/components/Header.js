@@ -14,13 +14,21 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">
+            <Nav.Link
+              as={Link}
+              to="/"
+              style={{ marginRight: "20px", marginLeft: "25px" }}
+            >
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/hearchords">
+            <Nav.Link
+              as={Link}
+              to="/hearchords"
+              style={{ marginRight: "20px" }}
+            >
               Chords
             </Nav.Link>
-            <Nav.Link as={Link} to="/quizinit">
+            <Nav.Link as={Link} to="/quizinit" style={{ marginRight: "20px" }}>
               Quiz
             </Nav.Link>
           </Nav>
