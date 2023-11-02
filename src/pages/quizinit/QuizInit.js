@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  chordSymbols,
-  chordCats,
-  chordCatsStrings,
-} from "../../services/Chords";
+import { chordData, chordCats } from "../../services/Chords";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import "./QuizInit.css";
@@ -25,17 +21,17 @@ const QuizInit = () => {
   const handleCatCheckboxChange = (cat) => {
     setChords((prevChords) => {
       // Check if all chords in the category are currently selected
-      const allSelected = chordCats[cat].every((chord) =>
+      const allSelected = chordCats[cat].names.every((chord) =>
         prevChords.includes(chord)
       );
 
       // If all chords are selected, unselect them
       if (allSelected) {
-        return prevChords.filter((c) => !chordCats[cat].includes(c));
+        return prevChords.filter((c) => !chordCats[cat].names.includes(c));
       }
       // If not all chords are selected, select them
       else {
-        return [...prevChords, ...chordCats[cat]];
+        return [...prevChords, ...chordCats[cat].names];
       }
     });
   };
@@ -52,7 +48,7 @@ const QuizInit = () => {
         {Object.keys(chordCats).map((cat) => (
           <Card
             bg="dark"
-            className="rounded"
+            className="rounded chordCard"
             style={{ width: "18rem" }}
             key={cat}
           >
@@ -61,17 +57,17 @@ const QuizInit = () => {
                 <input
                   type="checkbox"
                   onChange={() => handleCatCheckboxChange(cat)}
-                  checked={chordCats[cat].every((chord) =>
+                  checked={chordCats[cat].names.every((chord) =>
                     chords.includes(chord)
                   )}
                 />
                 <div className="checkmark"></div>
                 <span className="text-decoration-underline ">
-                  {chordCatsStrings[cat]}
+                  {chordCats[cat].label}
                 </span>
               </label>
             </CardHeader>
-            {chordCats[cat].map((chord) => (
+            {chordCats[cat].names.map((chord) => (
               <div key={chord}>
                 console.log(chord);
                 <label className="container">
@@ -81,7 +77,7 @@ const QuizInit = () => {
                     checked={chords.includes(chord)}
                   />
                   <div className="checkmark"></div>
-                  <span>{chordSymbols[chord]}</span>
+                  <span>{chordData[chord].symbol}</span>
                 </label>
               </div>
             ))}

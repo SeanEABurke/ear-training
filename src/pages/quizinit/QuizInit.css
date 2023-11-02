@@ -46,15 +46,23 @@ span {
     
   }
 
+  .chordCard {
+    margin-bottom: 30px;
+    border: rgba(61, 106, 255, 0.478) 2px;
+    border-style: inset;
+    box-shadow: 0 0 10px 5px rgba(0, 142, 236, 0.815);
+  }
+
   .columns {
-    flex: 1; /* Allows the columns to take up the available space equally */
+    flex: 1;
     display: flex;
     flex-wrap: wrap;
-  }
+  } 
   
-  .column {
-    flex-basis: calc(33.33% - 20px); /* Adjust the width as needed to create the desired number of columns */
-    margin: 10px; /* Add spacing between columns if desired */
+   .column {
+    flex-basis: calc(33.33% - 20px); 
+    margin: 10px; 
+    margin-top: 20px;
     box-sizing: border-box;
   }
   

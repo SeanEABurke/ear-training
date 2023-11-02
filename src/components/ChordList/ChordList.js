@@ -4,32 +4,30 @@ import React from "react";
 import {
   chordNames,
   makeChord,
-  chordDictionary,
-  chordSymbols,
+  chordData,
   chordCats,
-  chordCatsStrings,
 } from "../../services/Chords";
 
 function ChordList({ chordCat, sameKey }) {
   return (
-    <Card bg="dark" className="rounded" style={{ width: "18rem" }}>
+    <Card bg="dark" className="rounded chordCard" style={{ width: "18rem" }}>
       <Card.Header className="text-white text-center h4">
-        {chordCatsStrings[chordCat]}
+        {chordCats[chordCat].label}
       </Card.Header>
       <ButtonGroup className="d-flex flex-column align-items-center">
-        {chordCats[chordCat].map((chordName) => (
+        {chordCats[chordCat].names.map((chordName) => (
           <button
             key={chordName}
             onClick={() => {
               if (sameKey) {
-                makeChord(chordDictionary[chordName], 40);
+                makeChord(chordData[chordName].intervals, 40);
               } else {
-                makeChord(chordDictionary[chordName]);
+                makeChord(chordData[chordName].intervals);
               }
             }}
             className="chord-btn"
           >
-            {chordSymbols[chordName]}
+            {chordData[chordName].symbol}
           </button>
         ))}
       </ButtonGroup>

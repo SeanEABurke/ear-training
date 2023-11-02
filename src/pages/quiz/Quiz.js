@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import {
-  makeChord,
-  chordDictionary,
-  chordSymbols,
-} from "../../services/Chords";
+import { makeChord, chordData } from "../../services/Chords";
 import "./Quiz.css";
 import { Link } from "react-router-dom";
 
@@ -69,7 +65,10 @@ const Quiz = (props) => {
           <button
             key={index}
             onClick={() => {
-              makeChord(chordDictionary[selectedChords[index]], roots[index]);
+              makeChord(
+                chordData[selectedChords[index]].intervals,
+                roots[index]
+              );
               setShowCorrectMessage(false);
             }}
             className="chord-btn"
@@ -85,7 +84,7 @@ const Quiz = (props) => {
                 onClick={() => answerBtn(chordName)}
                 className="chord-btn"
               >
-                {chordSymbols[chordName]}
+                {chordData[chordName].symbol}
               </button>
             ))}
             {/* Correct Answer Message */}
