@@ -13,12 +13,14 @@ const Quiz = (props) => {
   const [showCorrectMessage, setShowCorrectMessage] = useState(false);
   const [showIncorrectMessage, setShowIncorrectMessage] = useState(false);
   const [uniqueKey, setUniqueKey] = useState(new Date().getTime());
+  console.log(state.sameRoot);
 
   useEffect(() => {
     const generateSelectedChords = () => {
       const chords = [];
       while (chords.length < 20) {
-        const chord = state[Math.floor(Math.random() * state.length)];
+        const chord =
+          state.chords[Math.floor(Math.random() * state.chords.length)];
         chords.push(chord);
       }
       setSelectedChords(chords);
@@ -26,8 +28,14 @@ const Quiz = (props) => {
 
     const generateRoots = () => {
       const rootNotes = [];
-      while (rootNotes.length < 20) {
-        rootNotes.push(Math.floor(Math.random() * 12) + 35);
+      if (state.sameRoot === false) {
+        while (rootNotes.length < 20) {
+          rootNotes.push(Math.floor(Math.random() * 12) + 35);
+        }
+      } else {
+        while (rootNotes.length < 20) {
+          rootNotes.push(43);
+        }
       }
       setRoots(rootNotes);
     };
@@ -78,7 +86,7 @@ const Quiz = (props) => {
 
           <div>
             <h1>Make your guess:</h1>
-            {state.map((chordName) => (
+            {state.chords.map((chordName) => (
               <button
                 key={chordName}
                 onClick={() => answerBtn(chordName)}

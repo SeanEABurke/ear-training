@@ -7,6 +7,7 @@ import CardHeader from "react-bootstrap/esm/CardHeader";
 
 const QuizInit = () => {
   const [chords, setChords] = useState([]);
+  const [sameRoot, setSameRoot] = useState(false);
 
   const handleCheckboxChange = (chord) => {
     setChords((prevChords) => {
@@ -36,10 +37,37 @@ const QuizInit = () => {
     });
   };
 
+  const handleToggleChange = () => {
+    if (sameRoot) {
+      setSameRoot(false);
+    } else {
+      setSameRoot(true);
+    }
+  };
+
+  const stateData = {
+    chords,
+    sameRoot,
+  };
+
   return (
     <div className="quiz-page">
       <h1>Quiz Setup</h1>
-      <Link to={`/quiz`} state={chords}>
+      <div className="toggler">
+        <h4>{sameRoot ? "Same root" : "Random roots"}</h4>
+        <div className="toggle-border">
+          <input
+            id="one"
+            type="checkbox"
+            checked={sameRoot}
+            onChange={handleToggleChange}
+          />
+          <label for="one">
+            <div className="handle"></div>
+          </label>
+        </div>
+      </div>
+      <Link to={`/quiz`} state={stateData}>
         <button className="chord-btn" id="start-btn">
           Start Quiz!
         </button>

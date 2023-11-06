@@ -141,7 +141,7 @@ export const chordCats = {
   },
   minor_extensions: {
     names: ["minor9", "minor11", "minor13"],
-    label: "Minor 7 extensions",
+    label: "Minor 7 Extensions",
   },
   minor_maj7: {
     names: ["minormaj7", "minormaj9", "minormaj7_add6"],

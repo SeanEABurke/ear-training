@@ -21,6 +21,27 @@ span {
   border-color: whitesmoke;
 }
 
+.toggler {
+    position: absolute;
+    top: 20vh; /* Adjust top and right values to position as desired */
+    right: 5vw;
+    /* background-color: #fff;  */
+    padding: 25px;
+    /* border: 2px dashed rgb(61, 106, 255); */
+    border-radius: 25px; 
+    background: rgb(33,37,41);
+    /* box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815); */
+    
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 15vw;
+    
+}
+
 /* Hide the default checkbox */
 .container input {
     position: absolute;
@@ -38,6 +59,7 @@ span {
     cursor: pointer;
     font-size: 25px;
     user-select: none;
+    padding-right: 2px;
   }
 
   .page {
