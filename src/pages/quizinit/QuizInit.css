@@ -23,7 +23,7 @@ span {
 
 .toggler {
     position: absolute;
-    top: 20vh; /* Adjust top and right values to position as desired */
+    top: 20vh;
     right: 5vw;
     /* background-color: #fff;  */
     padding: 25px;

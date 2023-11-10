@@ -8,6 +8,7 @@ import HearChords from "./pages/HearChords/HearChords";
 import Quiz from "./pages/Quiz/Quiz";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
+import Chess from "./pages/Chess/Chess";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/quizinit" element={<QuizInit />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/hearchords" element={<HearChords />} />
+        <Route path="/chessmusic" element={<Chess />} />
       </Routes>
     </>
   );
