@@ -62,7 +62,7 @@ const QuizInit = () => {
             checked={sameRoot}
             onChange={handleToggleChange}
           />
-          <label for="one">
+          <label htmlFor="one">
             <div className="handle"></div>
           </label>
         </div>
