@@ -15,7 +15,7 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route exact path="/ear-training" element={<Home />} />
+        <Route path="/ear-training" element={<Home />} />
         <Route path="/quizinit" element={<QuizInit />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/hearchords" element={<HearChords />} />
