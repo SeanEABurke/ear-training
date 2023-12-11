@@ -37,6 +37,15 @@ const QuizInit = () => {
     });
   };
 
+  const handleLinkClick = (event) => {
+    if (chords.length < 2) {
+      event.preventDefault();
+      alert("Please add at least 2 chords to start the quiz.");
+      // You can also use a modal or any other UI element to show the error message
+    }
+    // You can add additional actions if needed
+  };
+
   const handleToggleChange = () => {
     if (sameRoot) {
       setSameRoot(false);
@@ -67,7 +76,7 @@ const QuizInit = () => {
           </label>
         </div>
       </div>
-      <Link to={`/quiz`} state={stateData}>
+      <Link to={`/quiz`} state={stateData} onClick={handleLinkClick}>
         <button className="chord-btn" id="start-btn">
           Start Quiz!
         </button>

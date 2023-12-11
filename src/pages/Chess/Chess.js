@@ -181,6 +181,21 @@ const Chess = () => {
           ))}
         </Card>
       </div>
+      <div className="explanations">
+        <p>
+          With Rests: When on, any capture is a rest. If it's off then those
+          notes are played
+        </p>
+        <p>
+          Rhythms A-C: Different mappings between quarter, triplet, eighth, and
+          sixteenth notes
+        </p>
+        <p>Rhythms D: Includes same as A-C but also adds sextuplets</p>
+        <p>Rhythms E: Includes quarter, eithth, triplet and sextuplets</p>
+        <p>Rhythms F: Includes quarter, eithth, triplets and quintuplets</p>
+        <p>Rhythms G: Only quarter notes and triplets</p>
+        <p>Rhythms H: Quarter notes, eigther notes and sixteenth notes</p>
+      </div>
     </div>
   );
 };

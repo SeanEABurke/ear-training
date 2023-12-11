@@ -11,6 +11,11 @@
     color: #fff;
   }
 
+  p {
+    text-align: left;
+    margin-left: 10%;
+  }
+
   .container {
     max-width: 80vw;
     margin: 0 auto;

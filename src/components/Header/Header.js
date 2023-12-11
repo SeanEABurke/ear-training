@@ -31,6 +31,13 @@ const Header = () => {
             <Nav.Link as={Link} to="/quizinit" style={{ marginRight: "20px" }}>
               Quiz
             </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to="/chessmusic"
+              style={{ marginRight: "20px" }}
+            >
+              Chess Music
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

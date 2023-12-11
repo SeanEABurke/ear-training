@@ -11,6 +11,18 @@ export const tempos = {
 };
 
 const synth = new Tone.Synth().toDestination();
+const pianoSampler = new Tone.Sampler({
+  urls: {
+    A1: "A1.mp3",
+    A2: "A2.mp3",
+    A3: "A3.mp3",
+    A4: "A4.mp3",
+    A5: "A5.mp3",
+  },
+
+  baseUrl: "https://tonejs.github.io/audio/salamander/",
+}).toDestination();
+
 let melodySequence = "";
 let melodyPlayer1, melodyPlayer2;
 let melodySequencePlayer1 = "",
@@ -26,36 +38,44 @@ export const playChessMusic = async (
   await Tone.start();
 
   Tone.Transport.stop();
-  // const chessGame =
-  //   "1. e4 d5 2. f3 dxe4 3. fxe4 Nc6 4. Nc3 Nf6 5. Bb5 Bg4 6. Nge2 Qd6 7. d3 a6 8. Ba4 O-O-O 9. Bf4 Qb4 10. Bxc6 bxc6 11. O-O e6 12. Bg5 h6 13. Bxf6 gxf6 14. Rxf6 Rd7 15. Qf1 Bh5 16. Rb1 Rg8 17. Nf4 Bg6 18. Nxg6 fxg6 19. a3 Qc5+ 20. Kh1 Qe5 21. Rxf8+ Rxf8 22. Qxf8+ Kb7 23. Na4 h5 24. Nc5+ 1-0";
+
   const chessMoves = chessNotationToArray(chessGame);
-  console.log(chessMoves);
 
   const filteredSubarrays = chessMovesParsing(chessMoves, rhythm);
 
-  console.log(filteredSubarrays);
+  // console.log(filteredSubarrays);
   let melody;
 
   if (withRests) {
     melody = filteredSubarrays.map((move) =>
-      move.map((note) =>
-        note.includes("x") ? null : Modes[mode][note[note.length - 1]]
-      )
+      move.map((note) => {
+        const mappedNote = note.includes("x")
+          ? null
+          : Modes[mode][note[note.length - 1]];
+        return mappedNote !== undefined ? mappedNote : null;
+      })
     );
   } else {
     melody = filteredSubarrays.map((move) =>
-      move.map((note) => Modes[mode][note[note.length - 1]])
+      move.map((note) => {
+        const mappedNote = Modes[mode][note[note.length - 1]];
+        return mappedNote !== undefined ? mappedNote : null;
+      })
     );
   }
-  console.log(melody);
 
+  // // Map the array to replace undefined with null
+  // const melody2 = melody.map((move) =>
+  //   move.map((note) => (note === undefined ? null : note))
+  // );
+  clearSequences();
   clearAllSynths();
 
   // Create a sequence to play the melody
   melodySequence = new Tone.Sequence(
     (time, note) => {
       // Trigger the synth to play the note at the specified time
-      synth.triggerAttackRelease(note, 1, time);
+      pianoSampler.triggerAttackRelease(note, 1, time);
     },
     melody,
     tempos[tempo]
@@ -69,10 +89,12 @@ export const playChessMusic = async (
 
   //   Schedule a stop event after the duration of the melody
   const melodyDuration = (melody.length - 1) * tempos[tempo];
+
+  // Schedule a stop event after the number of steps in the sequence
   Tone.Transport.scheduleOnce(() => {
     // Stop the Tone.js transport
     Tone.Transport.stop();
-  }, `+${melodyDuration}`);
+  }, `+${melody.length * tempos[tempo]}`);
 };
 
 export const playCounterpointChessMusic = async (
@@ -86,8 +108,8 @@ export const playCounterpointChessMusic = async (
 
   Tone.Transport.stop();
 
-  const synthPlayer1 = new Tone.Synth().toDestination();
-  const synthPlayer2 = new Tone.Synth().toDestination();
+  const synthPlayer1 = pianoSampler;
+  const synthPlayer2 = pianoSampler;
 
   const chessMoves = chessNotationToArray(chessGame);
 
@@ -103,34 +125,47 @@ export const playCounterpointChessMusic = async (
     return index % 2 === 1;
   });
 
-  console.log(player1Moves);
+  // console.log(player1Moves);
 
   // Get the rhythmic subarrays for each set of moves
   const filteredPlayer1Moves = chessMovesParsing(player1Moves, rhythm);
   const filteredPlayer2Moves = chessMovesParsing(player2Moves, rhythm);
 
-  console.log(filteredPlayer1Moves);
+  // console.log(filteredPlayer1Moves);
+
+  clearSequences();
 
   // Map both set of moves to their pitches
   if (withRests) {
     melodyPlayer1 = filteredPlayer1Moves.map((move) =>
-      move.map((note) =>
-        note.includes("x") ? null : Modes[mode][note[note.length - 1]]
-      )
+      move.map((note) => {
+        const mappedNote = note.includes("x")
+          ? null
+          : Modes[mode][note[note.length - 1]];
+        return mappedNote !== undefined ? mappedNote : null;
+      })
     );
-
     melodyPlayer2 = filteredPlayer2Moves.map((move) =>
-      move.map((note) =>
-        note.includes("x") ? null : Modes[mode][note[note.length - 1]]
-      )
+      move.map((note) => {
+        const mappedNote = note.includes("x")
+          ? null
+          : Modes[mode][note[note.length - 1]];
+        return mappedNote !== undefined ? mappedNote : null;
+      })
     );
   } else {
     melodyPlayer1 = filteredPlayer1Moves.map((move) =>
-      move.map((note) => Modes[mode][note[note.length - 1]])
+      move.map((note) => {
+        const mappedNote = Modes[mode][note[note.length - 1]];
+        return mappedNote !== undefined ? mappedNote : null;
+      })
     );
 
     melodyPlayer2 = filteredPlayer2Moves.map((move) =>
-      move.map((note) => Modes[mode][note[note.length - 1]])
+      move.map((note) => {
+        const mappedNote = Modes[mode][note[note.length - 1]];
+        return mappedNote !== undefined ? mappedNote : null;
+      })
     );
   }
 
@@ -230,7 +265,20 @@ function chessMovesParsing(chessMoves, rhythm) {
         .join("")
     )
   );
+
   return filteredSubarrays;
+}
+// Dispose of old melodic sequences before creating new ones
+function clearSequences() {
+  if (melodySequence) {
+    melodySequence.dispose();
+  }
+  if (melodySequencePlayer1) {
+    melodySequencePlayer1.dispose();
+  }
+  if (melodySequencePlayer2) {
+    melodySequencePlayer2.dispose();
+  }
 }
 
 // Dispose of old melodic sequences before creating new ones
