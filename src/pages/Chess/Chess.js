@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import {
   playChessMusic,
   tempos,
@@ -25,7 +25,6 @@ const Chess = () => {
 
   const handleModeChange = useCallback((mode) => {
     setSelectedMode(mode);
-    console.log(mode);
   }, []);
 
   const handleRhythmChange = useCallback((grouping) => {

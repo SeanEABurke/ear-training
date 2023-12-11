@@ -10,7 +10,6 @@ export const tempos = {
   faster: 0.3,
 };
 
-const synth = new Tone.Synth().toDestination();
 const pianoSampler = new Tone.Sampler({
   urls: {
     A1: "A1.mp3",
@@ -86,9 +85,6 @@ export const playChessMusic = async (
 
   // Start the melody sequence
   melodySequence.start(0);
-
-  //   Schedule a stop event after the duration of the melody
-  const melodyDuration = (melody.length - 1) * tempos[tempo];
 
   // Schedule a stop event after the number of steps in the sequence
   Tone.Transport.scheduleOnce(() => {
@@ -251,7 +247,6 @@ function chessMovesParsing(chessMoves, rhythm) {
         index++;
       }
     } catch {
-      console.log("Something was wrong");
       index++;
     }
   }
