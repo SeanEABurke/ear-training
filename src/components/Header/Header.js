@@ -14,7 +14,7 @@ const Header = () => {
           <Nav className="me-auto">
             <Nav.Link
               as={Link}
-              to="/"
+              to="/ear-training"
               style={{ marginRight: "20px", marginLeft: "25px" }}
             >
               Home
