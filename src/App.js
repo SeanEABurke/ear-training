@@ -3,11 +3,11 @@ import "./App.css";
 import React from "react";
 import { playChessMusic } from "./services/ChessMusic";
 import Header from "./components/Header/Header";
-import QuizInit from "./pages/QuizInit/";
+import QuizInit from "./pages/QuizInit/QuizInit";
 import HearChords from "./pages/HearChords/HearChords";
 import Quiz from "./pages/Quiz/Quiz";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home/";
+import Home from "./pages/Home/Home";
 import Chess from "./pages/Chess/Chess";
 
 function App() {

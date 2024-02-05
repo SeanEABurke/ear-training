@@ -101,19 +101,11 @@ export const chordData = {
   m7b5: { intervals: [-12, 3, 6, 10], symbol: "Minor 7 b5" },
   m9b5: { intervals: [-12, 3, 6, 10, 14], symbol: "Minor 9 b5" },
   m11b5: { intervals: [-12, 3, 6, 10, 14, 17], symbol: "Minor 11 b5" },
+  dim: { intervals: [-12, 3, 6], symbol: "Dim" },
+  dim7: { intervals: [-12, 3, 6, 9], symbol: "Dim 7" },
+  dim_maj7: { intervals: [-12, 3, 6, 11], symbol: "Dim maj7" },
+  dim7_maj9: { intervals: [-12, 3, 6, 9, 14], symbol: "Dim7 maj9" },
 };
-
-// "dominant",
-// "dom9",
-// "dom13",
-// "dom_s11",
-// "dom13_s11",
-// "dom13_b9",
-// "domb9",
-// "doms9",
-// "doms5",
-// "doms9_s5",
-// "doms5_b9",
 
 export const chordCats = {
   triads: {
@@ -186,6 +178,10 @@ export const chordCats = {
     ],
     label: "Sus Extensions",
   },
+  diminished: {
+    names: ["dim", "dim7", "dim_maj7", "dim7_maj9"],
+    label: "Diminished",
+  },
   half_diminished: {
     names: ["m7b5", "m9b5", "m11b5"],
     label: "Half diminished",
@@ -208,7 +204,7 @@ export function makeChord(intervals, root = null) {
       onload: () => {
         // Get a random root note within the specified octave range
         const rootMidi =
-          root !== null ? root : Math.floor(Math.random() * 12) + 37;
+          root !== null ? root : Math.floor(Math.random() * 12) + 39;
         const chord = [];
 
         // Build the chord based on MIDI note numbers

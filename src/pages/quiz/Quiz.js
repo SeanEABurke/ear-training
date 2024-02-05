@@ -86,15 +86,6 @@ const Quiz = (props) => {
 
           <div>
             <h1>Make your guess:</h1>
-            {state.chords.map((chordName) => (
-              <button
-                key={chordName}
-                onClick={() => answerBtn(chordName)}
-                className="chord-btn"
-              >
-                {chordData[chordName].symbol}
-              </button>
-            ))}
             {/* Correct Answer Message */}
             {showCorrectMessage && (
               <div className="message">
@@ -108,6 +99,16 @@ const Quiz = (props) => {
                 <h1>Wrong, try again!</h1>
               </div>
             )}
+            {state.chords.map((chordName) => (
+              <button
+                key={chordName}
+                onClick={() => answerBtn(chordName)}
+                className="chord-btn"
+              >
+                {chordData[chordName].symbol}
+              </button>
+            ))}
+
             <div className="score">
               <h2>Score: {score}</h2>
             </div>
